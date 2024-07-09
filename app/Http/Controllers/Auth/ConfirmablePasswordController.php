@@ -21,6 +21,8 @@ class ConfirmablePasswordController extends Controller
 
     /**
      * Confirm the user's password.
+     *
+     * @throws ValidationException
      */
     public function store(Request $request): RedirectResponse
     {
