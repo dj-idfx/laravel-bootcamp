@@ -1,4 +1,4 @@
-import { defineConfig } from 'vite';
+import { defineConfig, loadEnv } from 'vite';
 import laravel from 'laravel-vite-plugin';
 
 /*
@@ -12,6 +12,7 @@ export default defineConfig({
                 'resources/css/app.css',
                 'resources/js/app.js',
             ],
+            // publicDirectory:  import.meta.env.VITE_PUBLIC_DIRECTORY || 'public',
             refresh: true,
         }),
     ],
