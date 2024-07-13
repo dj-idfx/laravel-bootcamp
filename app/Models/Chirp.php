@@ -2,11 +2,13 @@
 
 namespace App\Models;
 
-use App\Events\ChirpCreated;
+use App\Observers\ChirpObserver;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
+#[ObservedBy([ChirpObserver::class])]
 class Chirp extends Model
 {
     use HasFactory;
@@ -24,14 +26,17 @@ class Chirp extends Model
         'message',
     ];
 
-    /**
-     * The events that are dispatched.
-     *
-     * @var array<string, mixed>
-     */
-    protected $dispatchesEvents = [
-        'created' => ChirpCreated::class,
-    ];
+    //
+    // Events are now managed by the ChirpObserver
+    //
+    //    /**
+    //     * The events that are dispatched.
+    //     *
+    //     * @var array<string, mixed>
+    //     */
+    //    protected $dispatchesEvents = [
+    //        'created' => ChirpCreated::class,
+    //    ];
 
     /**
      * User eloquent relation

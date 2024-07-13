@@ -15,6 +15,8 @@ class ChirpController extends Controller
      */
     public function index(): View
     {
+        Gate::authorize('viewAny', Chirp::class);
+
         return view('chirps.index', [
             'chirps' => Chirp::with('user')->latest()->get(),
         ]);
@@ -25,9 +27,12 @@ class ChirpController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(): RedirectResponse
     {
-        //
+        Gate::authorize('create', Chirp::class);
+
+        // no view -> redirect to index
+        return redirect(route('chirps.index'));
     }
 
     /**
@@ -35,6 +40,8 @@ class ChirpController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
+        Gate::authorize('create', Chirp::class);
+
         $validated = $request->validate([
             'message' => 'required|string|max:255',
         ]);
@@ -47,9 +54,12 @@ class ChirpController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Chirp $chirp)
+    public function show(Chirp $chirp): RedirectResponse
     {
-        //
+        Gate::authorize('show', $chirp);
+
+        // no view -> redirect to index
+        return redirect(route('chirps.index'));
     }
 
     /**

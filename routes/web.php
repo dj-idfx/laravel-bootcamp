@@ -35,6 +35,6 @@ Route::resource('chirps', ChirpController::class)
     ->middleware(['auth', 'verified']);
 
 /**
- * \Auth Controllers
+ * \Auth Controllers (Breeze)
  */
 require __DIR__.'/auth.php';
