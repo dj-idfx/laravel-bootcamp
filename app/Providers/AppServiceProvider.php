@@ -22,8 +22,8 @@ class AppServiceProvider extends ServiceProvider
     {
         // todo : check docs if this is still needed?
         // Eloquent Strictness (only throws these errors in non-production environments)
-//        Model::preventLazyLoading(! $this->app->isProduction());
-//        Model::preventAccessingMissingAttributes(! $this->app->isProduction());
-//        Model::preventSilentlyDiscardingAttributes(! $this->app->isProduction());
+        //        Model::preventLazyLoading(! $this->app->isProduction());
+        //        Model::preventAccessingMissingAttributes(! $this->app->isProduction());
+        //        Model::preventSilentlyDiscardingAttributes(! $this->app->isProduction());
     }
 }
