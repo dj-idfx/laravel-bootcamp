@@ -6,10 +6,11 @@ use App\Models\Chirp;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PrivateChannel;
+use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class ChirpCreated
+class ChirpCreated implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
@@ -28,7 +29,7 @@ class ChirpCreated
     public function broadcastOn(): array
     {
         return [
-            new PrivateChannel("chirp.{$this->chirp->id}"),
+            new PrivateChannel('chirps.'.$this->chirp->id),
         ];
     }
 }

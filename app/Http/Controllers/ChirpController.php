@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateChirpRequest;
+use App\Http\Requests\UpdateChirpRequest;
 use App\Models\Chirp;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\View\View;
 
@@ -12,6 +14,8 @@ class ChirpController extends Controller
 {
     /**
      * Display a listing of the resource.
+     *
+     * @throws AuthorizationException
      */
     public function index(): View
     {
@@ -26,6 +30,8 @@ class ChirpController extends Controller
 
     /**
      * Show the form for creating a new resource.
+     *
+     * @throws AuthorizationException
      */
     public function create(): RedirectResponse
     {
@@ -37,26 +43,26 @@ class ChirpController extends Controller
 
     /**
      * Store a newly created resource in storage.
+     *
+     * @throws AuthorizationException
      */
-    public function store(Request $request): RedirectResponse
+    public function store(CreateChirpRequest $request): RedirectResponse
     {
         Gate::authorize('create', Chirp::class);
 
-        $validated = $request->validate([
-            'message' => 'required|string|max:255',
-        ]);
-
-        $request->user()->chirps()->create($validated);
+        $request->user()->chirps()->create($request->validated());
 
         return redirect(route('chirps.index'));
     }
 
     /**
      * Display the specified resource.
+     *
+     * @throws AuthorizationException
      */
     public function show(Chirp $chirp): RedirectResponse
     {
-        Gate::authorize('show', $chirp);
+        Gate::authorize('view', $chirp);
 
         // no view -> redirect to index
         return redirect(route('chirps.index'));
@@ -64,6 +70,8 @@ class ChirpController extends Controller
 
     /**
      * Show the form for editing the specified resource.
+     *
+     * @throws AuthorizationException
      */
     public function edit(Chirp $chirp): View
     {
@@ -76,22 +84,22 @@ class ChirpController extends Controller
 
     /**
      * Update the specified resource in storage.
+     *
+     * @throws AuthorizationException
      */
-    public function update(Request $request, Chirp $chirp): RedirectResponse
+    public function update(UpdateChirpRequest $request, Chirp $chirp): RedirectResponse
     {
         Gate::authorize('update', $chirp);
 
-        $validated = $request->validate([
-            'message' => 'required|string|max:255',
-        ]);
-
-        $chirp->update($validated);
+        $chirp->update($request->validated());
 
         return redirect(route('chirps.index'));
     }
 
     /**
      * Remove the specified resource from storage.
+     *
+     * @throws AuthorizationException
      */
     public function destroy(Chirp $chirp): RedirectResponse
     {
