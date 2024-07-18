@@ -53,4 +53,12 @@ class User extends Authenticatable
     {
         return $this->hasMany(Chirp::class);
     }
+
+    /**
+     * Post eloquent relation
+     */
+    public function posts(): HasMany
+    {
+        return $this->hasMany(Post::class);
+    }
 }

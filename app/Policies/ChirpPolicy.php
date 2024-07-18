@@ -4,6 +4,7 @@ namespace App\Policies;
 
 use App\Models\Chirp;
 use App\Models\User;
+use Auth;
 
 class ChirpPolicy
 {
@@ -12,7 +13,7 @@ class ChirpPolicy
      */
     public function viewAny(User $user): bool
     {
-        return true;
+        return Auth::user()->is($user);
     }
 
     /**

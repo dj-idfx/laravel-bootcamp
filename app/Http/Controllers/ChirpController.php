@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\CreateChirpRequest;
+use App\Http\Requests\StoreChirpRequest;
 use App\Http\Requests\UpdateChirpRequest;
 use App\Models\Chirp;
 use Illuminate\Auth\Access\AuthorizationException;
@@ -21,11 +21,9 @@ class ChirpController extends Controller
     {
         Gate::authorize('viewAny', Chirp::class);
 
-        return view('chirps.index', [
-            'chirps' => Chirp::with('user')->latest()->get(),
-        ]);
+        $chirps = Chirp::with('user')->latest()->get();
 
-        /* todo: paginate? https://laravel.com/docs/pagination */
+        return view('chirps.index', compact('chirps'));
     }
 
     /**
@@ -37,6 +35,7 @@ class ChirpController extends Controller
     {
         Gate::authorize('create', Chirp::class);
 
+        // this route is disabled
         // no view -> redirect to index
         return redirect(route('chirps.index'));
     }
@@ -46,7 +45,7 @@ class ChirpController extends Controller
      *
      * @throws AuthorizationException
      */
-    public function store(CreateChirpRequest $request): RedirectResponse
+    public function store(StoreChirpRequest $request): RedirectResponse
     {
         Gate::authorize('create', Chirp::class);
 
@@ -64,6 +63,7 @@ class ChirpController extends Controller
     {
         Gate::authorize('view', $chirp);
 
+        // this route is disabled
         // no view -> redirect to index
         return redirect(route('chirps.index'));
     }
@@ -77,9 +77,7 @@ class ChirpController extends Controller
     {
         Gate::authorize('update', $chirp);
 
-        return view('chirps.edit', [
-            'chirp' => $chirp,
-        ]);
+        return view('chirps.edit', compact('chirp'));
     }
 
     /**

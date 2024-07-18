@@ -3,18 +3,17 @@
 namespace App\Http\Requests;
 
 use App\Models\Chirp;
-use Auth;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateChirpRequest extends FormRequest
+class StoreChirpRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return Auth::user()->can('create', Chirp::class);
+        return auth()->user()->can('create', Chirp::class);
     }
 
     /**

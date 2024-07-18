@@ -2,16 +2,17 @@
 
 namespace App\Models;
 
-use App\Observers\ChirpObserver;
+use App\Observers\PostObserver;
 use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
-#[ObservedBy([ChirpObserver::class])]
-class Chirp extends Model
+#[ObservedBy([PostObserver::class])]
+class Post extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -19,20 +20,9 @@ class Chirp extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'message',
+        'title',
+        'content',
     ];
-
-    //
-    // Events are now managed by the ChirpObserver
-    //
-    //    /**
-    //     * The events that are dispatched.
-    //     *
-    //     * @var array<string, mixed>
-    //     */
-    //    protected $dispatchesEvents = [
-    //        'created' => ChirpCreated::class,
-    //    ];
 
     /**
      * User eloquent relation

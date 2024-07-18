@@ -2,17 +2,18 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Post;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateChirpRequest extends FormRequest
+class StorePostRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return auth()->user()->can('update', $this->chirp);
+        return auth()->user()->can('create', Post::class);
     }
 
     /**
@@ -23,7 +24,8 @@ class UpdateChirpRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'message' => 'required|string|max:255',
+            'title' => 'required|string|max:255',
+            'content' => 'nullable|string',
         ];
     }
 }
