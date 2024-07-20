@@ -5,10 +5,11 @@
     "keywords": ["laravel", "framework"],
     "license": "MIT",
     "require": {
-        "ext-pdo": "*",
         "php": "^8.2",
+        "ext-pdo": "*",
         "laravel/framework": "^11.16",
-        "laravel/tinker": "^2.9"
+        "laravel/tinker": "^2.9",
+        "opcodesio/log-viewer": "^3.10"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^3.1",
