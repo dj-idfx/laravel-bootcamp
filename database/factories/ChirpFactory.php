@@ -2,13 +2,13 @@
 
 namespace Database\Factories;
 
-use App\Models\Post;
+use App\Models\Chirp;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends Factory<Post>
+ * @extends Factory<Chirp>
  */
-class PostFactory extends Factory
+class ChirpFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -20,8 +20,7 @@ class PostFactory extends Factory
         $created_date = fake()->dateTimeBetween('-1 years');
 
         return [
-            'title' => fake()->realText(48),
-            'content' => fake()->paragraphs(8, true),
+            'message' => fake()->paragraph(2),
             'created_at' => $created_date,
             'updated_at' => $created_date,
         ];

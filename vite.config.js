@@ -12,7 +12,7 @@ export default defineConfig({
                 'resources/css/app.css',
                 'resources/js/app.js',
             ],
-            // publicDirectory:  import.meta.env.VITE_PUBLIC_DIRECTORY || 'public',
+            // publicDirectory:  import.meta.env.VITE_PUBLIC_DIRECTORY || 'public', //Todo: dit nodig?
             refresh: true,
         }),
     ],

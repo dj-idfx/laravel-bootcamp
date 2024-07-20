@@ -9,6 +9,7 @@ use Illuminate\Support\Str;
 
 /**
  * @extends Factory<User>
+ * @method hasPosts(int $int, ?array $array = null)
  */
 class UserFactory extends Factory
 {
