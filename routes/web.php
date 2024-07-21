@@ -9,9 +9,7 @@ use Illuminate\Support\Facades\Route;
 /**
  * Index
  */
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::view('/', 'welcome');
 
 
 /* Unverified User routes */
@@ -19,10 +17,14 @@ Route::middleware('auth')->group(function () {
 
     /**
      * ProfileController
+     * // todo: change to resource controller route  with only() method?
      */
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::controller(ProfileController::class)->group(function () {
+        Route::get('profile', 'edit')->name('profile.edit');
+        Route::patch('profile', 'update')->name('profile.update');
+        Route::delete('profile', 'destroy')->name('profile.destroy');
+    });
+
 });
 
 
@@ -32,9 +34,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     /**
      * Dashboard
      */
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+    Route::view('dashboard', 'dashboard')->name('dashboard');
 
     /**
      * ChirpController
@@ -44,8 +44,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     /**
      * PostController
      */
-    Route::patch('/posts/{post}/restore', [PostController::class, 'restore'])->name('posts.restore')->withTrashed();
-    Route::delete('/posts/{post}/delete', [PostController::class, 'delete'])->name('posts.delete')->withTrashed();
+    Route::patch('posts/{post}/restore', [PostController::class, 'restore'])->name('posts.restore')->withTrashed();
+    Route::delete('posts/{post}/delete', [PostController::class, 'delete'])->name('posts.delete')->withTrashed();
     Route::resource('posts', PostController::class);
 });
 
