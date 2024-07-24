@@ -1,10 +1,35 @@
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
-# Laravel Bootcamp
+# Laravel 11 Bootcamp
+
+This demo project is created using the Laravel Bootcamp guide as a start,  
+boosted with some extra added functionality and packages.  
+
+Check out the extra created Post model for a full CRUD example with soft-deletes:  
+A model, a resource controller with 2 form requests, an observer for event listening, a policy for authorization and 4 blade views. 
+
+There are factories for all the models and a basic database seeder with fake data.  
+Extra environment variables are created for an easy login after database refreshing during local development. (used in database.php)  
+You can change the .env variables to your personal needs, or just keep the defaults for quick login.    
+ADMIN_USER_NAME="My Name"   
+ADMIN_USER_MAIL="my.name@example.com"   
+ADMIN_USER_PASS=password   
+
+php artisan migrate:fresh --seed
 
 ## Chirper with Blade
 
 [Laravel Bootcamp](https://bootcamp.laravel.com/blade/installation)
+
+php artisan queue:work
+
+## OPcodes's Log Viewer
+
+Fast and beautiful Log Viewer for Laravel.  
+GitHub: https://github.com/opcodesio/log-viewer
+
+php artisan log-viewer:publish  
+php artisan vendor:publish --tag="log-viewer-config"  
 
 ### About Laravel
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:

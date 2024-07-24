@@ -13,7 +13,7 @@ class StoreChirpRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return auth()->user()->can('create', Chirp::class);
+        return $this->user()->can('create', Chirp::class);
     }
 
     /**

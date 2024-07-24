@@ -167,4 +167,18 @@ return [
 
     ],
 
+    /*
+    |--------------------------------------------------------------------------
+    | Database seeder admin user
+    |--------------------------------------------------------------------------
+    |
+    | Use this for creating an admin user account for development
+    |
+    */
+
+    'admin_user' => [
+        'name' => env('ADMIN_USER_NAME', 'My Name'),
+        'email' => env('ADMIN_USER_MAIL', 'my.name@example.com'),
+        'password' => env('ADMIN_USER_PASS', 'password'),
+    ],
 ];

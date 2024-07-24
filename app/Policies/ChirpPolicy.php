@@ -13,7 +13,7 @@ class ChirpPolicy
      */
     public function viewAny(User $user): bool
     {
-        return Auth::user()->is($user);
+        return Auth::user()->is($user); /* Todo: dit is een test, nodig? of andere manier om user te verifiëren? */
     }
 
     /**

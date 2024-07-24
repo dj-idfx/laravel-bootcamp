@@ -7,7 +7,7 @@
     "require": {
         "php": "^8.2",
         "ext-pdo": "*",
-        "laravel/framework": "^11.16",
+        "laravel/framework": "^11.17",
         "laravel/tinker": "^2.9",
         "opcodesio/log-viewer": "^3.10"
     },
@@ -15,7 +15,7 @@
         "barryvdh/laravel-ide-helper": "^3.1",
         "fakerphp/faker": "^1.23",
         "laravel/breeze": "^2.1",
-        "laravel/pint": "^1.16",
+        "laravel/pint": "^1.17",
         "mockery/mockery": "^1.6",
         "nunomaduro/collision": "^8.3",
         "pestphp/pest": "^2.34",

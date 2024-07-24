@@ -12,7 +12,7 @@ class UpdateChirpRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return auth()->user()->can('update', $this->chirp);
+        return $this->user()->can('update', $this->chirp);
     }
 
     /**

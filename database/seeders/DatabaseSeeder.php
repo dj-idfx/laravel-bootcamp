@@ -18,9 +18,9 @@ class DatabaseSeeder extends Seeder
             ->hasPosts(5)
             ->hasChirps(5)
             ->create([
-                'name' => env('ADMIN_USER_NAME', 'My Name'),
-                'email' => env('ADMIN_USER_MAIL', 'my.name@example.com'),
-                'password' => env('ADMIN_USER_PASS', 'password'),
+                'name' => config('database.admin_user.name'),
+                'email' => config('database.admin_user.name'),
+                'password' => config('database.admin_user.name'),
             ]);
 
         // Create fake users
