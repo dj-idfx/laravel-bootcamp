@@ -19,8 +19,8 @@ class DatabaseSeeder extends Seeder
             ->hasChirps(5)
             ->create([
                 'name' => config('database.admin_user.name'),
-                'email' => config('database.admin_user.name'),
-                'password' => config('database.admin_user.name'),
+                'email' => config('database.admin_user.email'),
+                'password' => config('database.admin_user.password'),
             ]);
 
         // Create fake users
