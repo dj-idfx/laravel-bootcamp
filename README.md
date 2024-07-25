@@ -3,13 +3,13 @@
 # Laravel 11 Bootcamp
 
 This demo project is created using the Laravel Bootcamp guide as a start,  
-boosted with some extra added functionality and packages.  
+enhanced with some extra added functionality and packages.  
 
 Check out the extra created Post model for a full CRUD example with soft-deletes:  
-A model, a resource controller with 2 form requests, an observer for event listening, a policy for authorization and 4 blade views. 
+A model, a resource controller with two form requests, an observer for event listening, a policy for authorization and four blade views. 
 
 There are factories for all the models and a basic database seeder with fake data.  
-Extra environment variables are created for an easy login after database refreshing during local development. (used in database.php)  
+Extra environment variables are created for an easy login after a database refresh during local development. (used in database.php)  
 You can change the .env variables to your personal needs, or just keep the defaults for quick login.    
 ADMIN_USER_NAME="My Name"   
 ADMIN_USER_MAIL="my.name@example.com"   
@@ -31,7 +31,7 @@ GitHub: https://github.com/opcodesio/log-viewer
 php artisan log-viewer:publish  
 php artisan vendor:publish --tag="log-viewer-config"  
 
-### About Laravel
+## About Laravel
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
 - [Simple, fast routing engine](https://laravel.com/docs/routing).

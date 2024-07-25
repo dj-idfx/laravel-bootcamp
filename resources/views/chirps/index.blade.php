@@ -36,7 +36,7 @@
                                     @endunless
                                 </div>
 
-                                @if ($chirp->user->is(auth()->user()))
+                                @can('update', $chirp)
                                     <x-dropdown>
                                         <x-slot name="trigger">
                                             <button>
@@ -50,16 +50,18 @@
                                                 {{ __('Edit') }}
                                             </x-dropdown-link>
 
-                                            <form method="POST" action="{{ route('chirps.destroy', $chirp) }}">
-                                                @csrf
-                                                @method('delete')
-                                                <x-dropdown-link :href="route('chirps.destroy', $chirp)" onclick="event.preventDefault(); this.closest('form').submit();">
-                                                    {{ __('Delete') }}
-                                                </x-dropdown-link>
-                                            </form>
+                                            @can('delete', $chirp)
+                                                <form method="POST" action="{{ route('chirps.destroy', $chirp) }}">
+                                                    @csrf
+                                                    @method('delete')
+                                                    <x-dropdown-link :href="route('chirps.destroy', $chirp)" onclick="event.preventDefault(); this.closest('form').submit();">
+                                                        {{ __('Delete') }}
+                                                    </x-dropdown-link>
+                                                </form>
+                                            @endcan
                                         </x-slot>
                                     </x-dropdown>
-                                @endif
+                                @endcan
                             </div>
                             <p class="mt-4 text-lg text-gray-900 whitespace-pre-wrap">{{ $chirp->message }}</p>
                         </div>

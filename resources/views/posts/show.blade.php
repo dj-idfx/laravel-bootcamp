@@ -15,7 +15,7 @@
                                 {{ $post->title }}
                             </h3>
 
-                            @if ($post->user->is(auth()->user()))
+                            @can('update', $post)
                                 <x-dropdown>
                                     <x-slot name="trigger">
                                         <button>
@@ -29,16 +29,18 @@
                                             {{ __('Edit') }}
                                         </x-dropdown-link>
 
-                                        <form method="POST" action="{{ route('posts.destroy', $post) }}">
-                                            @csrf
-                                            @method('delete')
-                                            <x-dropdown-link :href="route('posts.destroy', $post)" onclick="event.preventDefault(); this.closest('form').submit();">
-                                                {{ __('Delete') }}
-                                            </x-dropdown-link>
-                                        </form>
+                                        @can('delete', $post)
+                                            <form method="POST" action="{{ route('posts.destroy', $post) }}">
+                                                @csrf
+                                                @method('delete')
+                                                <x-dropdown-link :href="route('posts.destroy', $post)" onclick="event.preventDefault(); this.closest('form').submit();">
+                                                    {{ __('Delete') }}
+                                                </x-dropdown-link>
+                                            </form>
+                                        @endcan
                                     </x-slot>
                                 </x-dropdown>
-                            @endif
+                            @endcan
                         </div>
                     </div>
 

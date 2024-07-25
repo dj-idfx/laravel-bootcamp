@@ -48,7 +48,7 @@ class ChirpPolicy
         /**
          * Rather than repeating the logic from the update method,
          * we can define the same logic by calling the update method from inside this destroy method.
-         * Anyone that is authorized to update a Chirp will now be authorized to delete it as well.
+         * Anyone authorized to update a Chirp will now be authorized to delete it as well.
          */
         return $this->update($user, $chirp);
     }
